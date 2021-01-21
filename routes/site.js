@@ -11,16 +11,16 @@ const apikey = process.env.APIKEY;
 const private = process.env.PRIVATE_KEY;
 
 // recuperer les infos des personnages en fonction  à partir de l'id
-router.post("/comics/characters", async (req, res) => {
+router.post("/comics/character", async (req, res) => {
   const date = new Date();
   const timestamp = date.getTime() / 1000;
   const ts = Math.floor(timestamp);
   const hash = await md5(ts + private + apikey);
-
+  console.log(req.fields);
   const id = req.fields.id;
   try {
     const response = await axios.get(
-      `https://gateway.marvel.com/v1/public/comics/${id}?ts=${ts}&apikey=${apikey}&hash=${hash}`
+      `https://gateway.marvel.com/v1/public/comics/${id}/characters?ts=${ts}&apikey=${apikey}&hash=${hash}`
     );
 
     res.json(response.data);
