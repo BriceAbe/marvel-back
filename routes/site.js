@@ -20,7 +20,7 @@ router.post("/comics/characters", async (req, res) => {
   const id = req.fields.id;
   try {
     const response = await axios.get(
-      `https://gateway.marvel.com/v1/public/comics/${id}/characters?ts=${ts}&apikey=${apikey}&hash=${hash}`
+      `https://gateway.marvel.com/v1/public/comics/${id}?ts=${ts}&apikey=${apikey}&hash=${hash}`
     );
 
     res.json(response.data);
